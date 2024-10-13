@@ -1,5 +1,7 @@
 package com.peng.pattern.singleton.InnerClass;
 
+import java.io.*;
+
 /**
  * @Author: spengju
  * @Slogan: Day day no bug.
@@ -7,8 +9,16 @@ package com.peng.pattern.singleton.InnerClass;
  * @Desc:
  */
 public class InnerClassSingletonTest {
-    public static void main(String[] args) {
-        System.out.println(InnerClassSingleton.getInstance());
-        System.out.println(InnerClassSingleton.getInstance());
+    public static void main(String[] args) throws Exception {
+        InnerClassSingleton instance = InnerClassSingleton.getInstance();
+        System.out.println(instance);
+//        System.out.println(InnerClassSingleton.getInstance());
+//        System.out.println(InnerClassSingleton.getInstance());
+//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("testInstance"));
+//        objectOutputStream.writeObject(instance);
+//        objectOutputStream.close();
+        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("testInstance"));
+        InnerClassSingleton object = ((InnerClassSingleton) inputStream.readObject());
+        System.out.println(object);
     }
 }

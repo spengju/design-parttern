@@ -1,5 +1,8 @@
 package com.peng.pattern.singleton.InnerClass;
 
+import java.io.ObjectStreamException;
+import java.io.Serializable;
+
 /**
  * @Author: spengju
  * @Slogan: Day day no bug.
@@ -8,7 +11,9 @@ package com.peng.pattern.singleton.InnerClass;
  * 利用类的加载机制来保证线程安全
  * 只有在真正使用对应的类时，才会触发初始化
  */
-public class InnerClassSingleton {
+public class InnerClassSingleton implements Serializable {
+
+    static final long serialVersionUID = 42L;
 
     class InnerClassHolder {
         private static InnerClassSingleton instance = new InnerClassSingleton();
@@ -23,4 +28,15 @@ public class InnerClassSingleton {
     public static InnerClassSingleton getInstance() {
         return InnerClassHolder.instance;
     }
+
+    /**
+     * 不加这个，从文件读取到序列化流会导致和代码的不一样
+     * @return
+     * @throws ObjectStreamException
+     */
+    Object readResolve() throws ObjectStreamException {
+        return InnerClassHolder.instance;
+    }
+
+
 }
