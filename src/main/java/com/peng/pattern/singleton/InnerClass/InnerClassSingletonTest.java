@@ -17,8 +17,10 @@ public class InnerClassSingletonTest {
 //        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("testInstance"));
 //        objectOutputStream.writeObject(instance);
 //        objectOutputStream.close();
+
         ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("testInstance"));
         InnerClassSingleton object = ((InnerClassSingleton) inputStream.readObject());
+        inputStream.close();
         System.out.println(object);
     }
 }
