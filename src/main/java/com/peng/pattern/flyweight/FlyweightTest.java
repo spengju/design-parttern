@@ -4,7 +4,7 @@ package com.peng.pattern.flyweight;
  * @Author: spengju
  * @Slogan: Day day no bug.
  * @Date: 2024/10/15 23:06
- * @Desc:
+ * @Desc: 享元模式
  */
 public class FlyweightTest {
     public static void main(String[] args) {
